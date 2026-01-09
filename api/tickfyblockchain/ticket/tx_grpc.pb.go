@@ -20,9 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName = "/tickfyblockchain.ticket.Msg/UpdateParams"
-	Msg_CreateTicket_FullMethodName = "/tickfyblockchain.ticket.Msg/CreateTicket"
-	Msg_UpdateTicket_FullMethodName = "/tickfyblockchain.ticket.Msg/UpdateTicket"
+	Msg_UpdateParams_FullMethodName   = "/tickfyblockchain.ticket.Msg/UpdateParams"
+	Msg_CreateTicket_FullMethodName   = "/tickfyblockchain.ticket.Msg/CreateTicket"
+	Msg_UpdateTicket_FullMethodName   = "/tickfyblockchain.ticket.Msg/UpdateTicket"
+	Msg_TransferTicket_FullMethodName = "/tickfyblockchain.ticket.Msg/TransferTicket"
 )
 
 // MsgClient is the client API for Msg service.
@@ -34,6 +35,7 @@ type MsgClient interface {
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	CreateTicket(ctx context.Context, in *MsgCreateTicket, opts ...grpc.CallOption) (*MsgCreateTicketResponse, error)
 	UpdateTicket(ctx context.Context, in *MsgUpdateTicket, opts ...grpc.CallOption) (*MsgUpdateTicketResponse, error)
+	TransferTicket(ctx context.Context, in *MsgTransferTicket, opts ...grpc.CallOption) (*MsgTransferTicketResponse, error)
 }
 
 type msgClient struct {
@@ -71,6 +73,15 @@ func (c *msgClient) UpdateTicket(ctx context.Context, in *MsgUpdateTicket, opts 
 	return out, nil
 }
 
+func (c *msgClient) TransferTicket(ctx context.Context, in *MsgTransferTicket, opts ...grpc.CallOption) (*MsgTransferTicketResponse, error) {
+	out := new(MsgTransferTicketResponse)
+	err := c.cc.Invoke(ctx, Msg_TransferTicket_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -80,6 +91,7 @@ type MsgServer interface {
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	CreateTicket(context.Context, *MsgCreateTicket) (*MsgCreateTicketResponse, error)
 	UpdateTicket(context.Context, *MsgUpdateTicket) (*MsgUpdateTicketResponse, error)
+	TransferTicket(context.Context, *MsgTransferTicket) (*MsgTransferTicketResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -95,6 +107,9 @@ func (UnimplementedMsgServer) CreateTicket(context.Context, *MsgCreateTicket) (*
 }
 func (UnimplementedMsgServer) UpdateTicket(context.Context, *MsgUpdateTicket) (*MsgUpdateTicketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTicket not implemented")
+}
+func (UnimplementedMsgServer) TransferTicket(context.Context, *MsgTransferTicket) (*MsgTransferTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TransferTicket not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -163,6 +178,24 @@ func _Msg_UpdateTicket_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_TransferTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgTransferTicket)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).TransferTicket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_TransferTicket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).TransferTicket(ctx, req.(*MsgTransferTicket))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -181,6 +214,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateTicket",
 			Handler:    _Msg_UpdateTicket_Handler,
+		},
+		{
+			MethodName: "TransferTicket",
+			Handler:    _Msg_TransferTicket_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -31,6 +31,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgUpdateTicket int = 100
 
+	opWeightMsgTransferTicket = "op_weight_msg_transfer_ticket"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgTransferTicket int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -76,6 +80,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		ticketsimulation.SimulateMsgUpdateTicket(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgTransferTicket int
+	simState.AppParams.GetOrGenerate(opWeightMsgTransferTicket, &weightMsgTransferTicket, nil,
+		func(_ *rand.Rand) {
+			weightMsgTransferTicket = defaultWeightMsgTransferTicket
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgTransferTicket,
+		ticketsimulation.SimulateMsgTransferTicket(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -97,6 +112,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgUpdateTicket,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				ticketsimulation.SimulateMsgUpdateTicket(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgTransferTicket,
+			defaultWeightMsgTransferTicket,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				ticketsimulation.SimulateMsgTransferTicket(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),
