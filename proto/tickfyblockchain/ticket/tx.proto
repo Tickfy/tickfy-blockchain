@@ -20,6 +20,7 @@ service Msg {
   rpc CreateTicket   (MsgCreateTicket  ) returns (MsgCreateTicketResponse  );
   rpc UpdateTicket   (MsgUpdateTicket  ) returns (MsgUpdateTicketResponse  );
   rpc TransferTicket (MsgTransferTicket) returns (MsgTransferTicketResponse);
+  rpc ValidateTicket (MsgValidateTicket) returns (MsgValidateTicketResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -73,4 +74,12 @@ message MsgTransferTicket {
 }
 
 message MsgTransferTicketResponse {}
+
+message MsgValidateTicket {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgValidateTicketResponse {}
 
