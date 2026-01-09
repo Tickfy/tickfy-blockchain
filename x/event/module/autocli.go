@@ -28,6 +28,17 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a event",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
 				},
+				{
+					RpcMethod: "EventDayAll",
+					Use:       "list-event-day",
+					Short:     "List all eventDay",
+				},
+				{
+					RpcMethod:      "EventDay",
+					Use:            "show-event-day [id]",
+					Short:          "Shows a eventDay",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

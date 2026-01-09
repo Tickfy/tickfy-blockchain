@@ -1,0 +1,14 @@
+syntax = "proto3";
+package tickfyblockchain.event;
+
+option go_package = "tickfy-blockchain/x/event/types";
+
+message EventDay {
+  string index = 1; 
+  string eventIndex = 2; 
+  string name = 3; 
+  string startTime = 4; 
+  string endTime = 5; 
+  
+}
+

@@ -6,6 +6,7 @@ import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "tickfyblockchain/event/params.proto";
 import "tickfyblockchain/event/event.proto";
+import "tickfyblockchain/event/event_day.proto";
 
 option go_package = "tickfy-blockchain/x/event/types";
 
@@ -13,7 +14,8 @@ option go_package = "tickfy-blockchain/x/event/types";
 message GenesisState {
   
   // params defines all the parameters of the module.
-           Params params    = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  repeated Event  eventList = 2 [(gogoproto.nullable) = false] ;
+           Params   params       = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Event    eventList    = 2 [(gogoproto.nullable) = false] ;
+  repeated EventDay eventDayList = 3 [(gogoproto.nullable) = false] ;
 }
 

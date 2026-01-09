@@ -31,6 +31,14 @@ func TestGenesisState_Validate(t *testing.T) {
 						Index: "1",
 					},
 				},
+				EventDayList: []types.EventDay{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -39,6 +47,20 @@ func TestGenesisState_Validate(t *testing.T) {
 			desc: "duplicated event",
 			genState: &types.GenesisState{
 				EventList: []types.Event{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated eventDay",
+			genState: &types.GenesisState{
+				EventDayList: []types.EventDay{
 					{
 						Index: "0",
 					},

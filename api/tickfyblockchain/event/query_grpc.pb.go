@@ -20,9 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName   = "/tickfyblockchain.event.Query/Params"
-	Query_Event_FullMethodName    = "/tickfyblockchain.event.Query/Event"
-	Query_EventAll_FullMethodName = "/tickfyblockchain.event.Query/EventAll"
+	Query_Params_FullMethodName      = "/tickfyblockchain.event.Query/Params"
+	Query_Event_FullMethodName       = "/tickfyblockchain.event.Query/Event"
+	Query_EventAll_FullMethodName    = "/tickfyblockchain.event.Query/EventAll"
+	Query_EventDay_FullMethodName    = "/tickfyblockchain.event.Query/EventDay"
+	Query_EventDayAll_FullMethodName = "/tickfyblockchain.event.Query/EventDayAll"
 )
 
 // QueryClient is the client API for Query service.
@@ -34,6 +36,9 @@ type QueryClient interface {
 	// Queries a list of Event items.
 	Event(ctx context.Context, in *QueryGetEventRequest, opts ...grpc.CallOption) (*QueryGetEventResponse, error)
 	EventAll(ctx context.Context, in *QueryAllEventRequest, opts ...grpc.CallOption) (*QueryAllEventResponse, error)
+	// Queries a list of EventDay items.
+	EventDay(ctx context.Context, in *QueryGetEventDayRequest, opts ...grpc.CallOption) (*QueryGetEventDayResponse, error)
+	EventDayAll(ctx context.Context, in *QueryAllEventDayRequest, opts ...grpc.CallOption) (*QueryAllEventDayResponse, error)
 }
 
 type queryClient struct {
@@ -71,6 +76,24 @@ func (c *queryClient) EventAll(ctx context.Context, in *QueryAllEventRequest, op
 	return out, nil
 }
 
+func (c *queryClient) EventDay(ctx context.Context, in *QueryGetEventDayRequest, opts ...grpc.CallOption) (*QueryGetEventDayResponse, error) {
+	out := new(QueryGetEventDayResponse)
+	err := c.cc.Invoke(ctx, Query_EventDay_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) EventDayAll(ctx context.Context, in *QueryAllEventDayRequest, opts ...grpc.CallOption) (*QueryAllEventDayResponse, error) {
+	out := new(QueryAllEventDayResponse)
+	err := c.cc.Invoke(ctx, Query_EventDayAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -80,6 +103,9 @@ type QueryServer interface {
 	// Queries a list of Event items.
 	Event(context.Context, *QueryGetEventRequest) (*QueryGetEventResponse, error)
 	EventAll(context.Context, *QueryAllEventRequest) (*QueryAllEventResponse, error)
+	// Queries a list of EventDay items.
+	EventDay(context.Context, *QueryGetEventDayRequest) (*QueryGetEventDayResponse, error)
+	EventDayAll(context.Context, *QueryAllEventDayRequest) (*QueryAllEventDayResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -95,6 +121,12 @@ func (UnimplementedQueryServer) Event(context.Context, *QueryGetEventRequest) (*
 }
 func (UnimplementedQueryServer) EventAll(context.Context, *QueryAllEventRequest) (*QueryAllEventResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EventAll not implemented")
+}
+func (UnimplementedQueryServer) EventDay(context.Context, *QueryGetEventDayRequest) (*QueryGetEventDayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EventDay not implemented")
+}
+func (UnimplementedQueryServer) EventDayAll(context.Context, *QueryAllEventDayRequest) (*QueryAllEventDayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EventDayAll not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -163,6 +195,42 @@ func _Query_EventAll_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_EventDay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetEventDayRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).EventDay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_EventDay_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).EventDay(ctx, req.(*QueryGetEventDayRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_EventDayAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllEventDayRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).EventDayAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_EventDayAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).EventDayAll(ctx, req.(*QueryAllEventDayRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -181,6 +249,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EventAll",
 			Handler:    _Query_EventAll_Handler,
+		},
+		{
+			MethodName: "EventDay",
+			Handler:    _Query_EventDay_Handler,
+		},
+		{
+			MethodName: "EventDayAll",
+			Handler:    _Query_EventDayAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
