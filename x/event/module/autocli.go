@@ -50,6 +50,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
 				},
+				{
+					RpcMethod:      "CreateEvent",
+					Use:            "create-event [index] [name] [description] [location] [image-url] [creator-fee]",
+					Short:          "Send a createEvent tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}, {ProtoField: "name"}, {ProtoField: "description"}, {ProtoField: "location"}, {ProtoField: "imageUrl"}, {ProtoField: "creatorFee"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},
