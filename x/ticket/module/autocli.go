@@ -45,6 +45,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a createTicket tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}, {ProtoField: "eventIndex"}, {ProtoField: "eventDayIndex"}, {ProtoField: "owner"}, {ProtoField: "price"}, {ProtoField: "metadata"}},
 				},
+				{
+					RpcMethod:      "UpdateTicket",
+					Use:            "update-ticket [index] [metadata] [price]",
+					Short:          "Send a updateTicket tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}, {ProtoField: "metadata"}, {ProtoField: "price"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

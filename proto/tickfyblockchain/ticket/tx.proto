@@ -18,6 +18,7 @@ service Msg {
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams (MsgUpdateParams) returns (MsgUpdateParamsResponse);
   rpc CreateTicket (MsgCreateTicket) returns (MsgCreateTicketResponse);
+  rpc UpdateTicket (MsgUpdateTicket) returns (MsgUpdateTicketResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -51,4 +52,14 @@ message MsgCreateTicket {
 message MsgCreateTicketResponse {
   string index = 1;
 }
+
+message MsgUpdateTicket {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator  = 1;
+  string index    = 2;
+  string metadata = 3;
+  uint64 price    = 4;
+}
+
+message MsgUpdateTicketResponse {}
 
