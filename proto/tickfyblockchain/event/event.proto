@@ -1,0 +1,16 @@
+syntax = "proto3";
+package tickfyblockchain.event;
+
+option go_package = "tickfy-blockchain/x/event/types";
+
+message Event {
+  string index = 1; 
+  string name = 2; 
+  string description = 3; 
+  string location = 4; 
+  string imageUrl = 5; 
+  string creator = 6; 
+  uint64 creatorFee = 7; 
+  
+}
+
