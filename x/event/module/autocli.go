@@ -62,6 +62,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a updateEvent tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}, {ProtoField: "name"}, {ProtoField: "description"}, {ProtoField: "location"}, {ProtoField: "imageUrl"}, {ProtoField: "creatorFee"}},
 				},
+				{
+					RpcMethod:      "CreateEventDay",
+					Use:            "create-event-day [index] [event-index] [name] [start-time] [end-time]",
+					Short:          "Send a createEventDay tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}, {ProtoField: "eventIndex"}, {ProtoField: "name"}, {ProtoField: "startTime"}, {ProtoField: "endTime"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

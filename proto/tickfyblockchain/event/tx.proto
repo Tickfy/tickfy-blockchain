@@ -16,9 +16,10 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams (MsgUpdateParams) returns (MsgUpdateParamsResponse);
-  rpc CreateEvent  (MsgCreateEvent ) returns (MsgCreateEventResponse );
-  rpc UpdateEvent  (MsgUpdateEvent ) returns (MsgUpdateEventResponse );
+  rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
+  rpc CreateEvent    (MsgCreateEvent   ) returns (MsgCreateEventResponse   );
+  rpc UpdateEvent    (MsgUpdateEvent   ) returns (MsgUpdateEventResponse   );
+  rpc CreateEventDay (MsgCreateEventDay) returns (MsgCreateEventDayResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -65,4 +66,18 @@ message MsgUpdateEvent {
 }
 
 message MsgUpdateEventResponse {}
+
+message MsgCreateEventDay {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator    = 1;
+  string index      = 2;
+  string eventIndex = 3;
+  string name       = 4;
+  string startTime  = 5;
+  string endTime    = 6;
+}
+
+message MsgCreateEventDayResponse {
+  string index = 1;
+}
 

@@ -31,6 +31,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgUpdateEvent int = 100
 
+	opWeightMsgCreateEventDay = "op_weight_msg_create_event_day"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgCreateEventDay int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -76,6 +80,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		eventsimulation.SimulateMsgUpdateEvent(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgCreateEventDay int
+	simState.AppParams.GetOrGenerate(opWeightMsgCreateEventDay, &weightMsgCreateEventDay, nil,
+		func(_ *rand.Rand) {
+			weightMsgCreateEventDay = defaultWeightMsgCreateEventDay
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgCreateEventDay,
+		eventsimulation.SimulateMsgCreateEventDay(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -97,6 +112,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgUpdateEvent,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				eventsimulation.SimulateMsgUpdateEvent(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgCreateEventDay,
+			defaultWeightMsgCreateEventDay,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				eventsimulation.SimulateMsgCreateEventDay(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),
