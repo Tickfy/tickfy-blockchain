@@ -8,7 +8,6 @@ package ticket
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,6 +23,7 @@ const (
 	Msg_CreateTicket_FullMethodName   = "/tickfyblockchain.ticket.Msg/CreateTicket"
 	Msg_UpdateTicket_FullMethodName   = "/tickfyblockchain.ticket.Msg/UpdateTicket"
 	Msg_TransferTicket_FullMethodName = "/tickfyblockchain.ticket.Msg/TransferTicket"
+	Msg_ValidateTicket_FullMethodName = "/tickfyblockchain.ticket.Msg/ValidateTicket"
 )
 
 // MsgClient is the client API for Msg service.
@@ -36,6 +36,7 @@ type MsgClient interface {
 	CreateTicket(ctx context.Context, in *MsgCreateTicket, opts ...grpc.CallOption) (*MsgCreateTicketResponse, error)
 	UpdateTicket(ctx context.Context, in *MsgUpdateTicket, opts ...grpc.CallOption) (*MsgUpdateTicketResponse, error)
 	TransferTicket(ctx context.Context, in *MsgTransferTicket, opts ...grpc.CallOption) (*MsgTransferTicketResponse, error)
+	ValidateTicket(ctx context.Context, in *MsgValidateTicket, opts ...grpc.CallOption) (*MsgValidateTicketResponse, error)
 }
 
 type msgClient struct {
@@ -82,6 +83,15 @@ func (c *msgClient) TransferTicket(ctx context.Context, in *MsgTransferTicket, o
 	return out, nil
 }
 
+func (c *msgClient) ValidateTicket(ctx context.Context, in *MsgValidateTicket, opts ...grpc.CallOption) (*MsgValidateTicketResponse, error) {
+	out := new(MsgValidateTicketResponse)
+	err := c.cc.Invoke(ctx, Msg_ValidateTicket_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -92,6 +102,7 @@ type MsgServer interface {
 	CreateTicket(context.Context, *MsgCreateTicket) (*MsgCreateTicketResponse, error)
 	UpdateTicket(context.Context, *MsgUpdateTicket) (*MsgUpdateTicketResponse, error)
 	TransferTicket(context.Context, *MsgTransferTicket) (*MsgTransferTicketResponse, error)
+	ValidateTicket(context.Context, *MsgValidateTicket) (*MsgValidateTicketResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -110,6 +121,9 @@ func (UnimplementedMsgServer) UpdateTicket(context.Context, *MsgUpdateTicket) (*
 }
 func (UnimplementedMsgServer) TransferTicket(context.Context, *MsgTransferTicket) (*MsgTransferTicketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TransferTicket not implemented")
+}
+func (UnimplementedMsgServer) ValidateTicket(context.Context, *MsgValidateTicket) (*MsgValidateTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateTicket not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -196,6 +210,24 @@ func _Msg_TransferTicket_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_ValidateTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgValidateTicket)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).ValidateTicket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_ValidateTicket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).ValidateTicket(ctx, req.(*MsgValidateTicket))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -218,6 +250,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TransferTicket",
 			Handler:    _Msg_TransferTicket_Handler,
+		},
+		{
+			MethodName: "ValidateTicket",
+			Handler:    _Msg_ValidateTicket_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

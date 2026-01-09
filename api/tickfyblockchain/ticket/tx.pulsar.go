@@ -2,19 +2,18 @@
 package ticket
 
 import (
-	fmt "fmt"
-	io "io"
-	reflect "reflect"
-	sync "sync"
-
 	_ "cosmossdk.io/api/amino"
 	_ "cosmossdk.io/api/cosmos/msg/v1"
+	fmt "fmt"
 	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	io "io"
+	reflect "reflect"
+	sync "sync"
 )
 
 var (
@@ -3984,6 +3983,846 @@ func (x *fastReflection_MsgTransferTicketResponse) ProtoMethods() *protoiface.Me
 	}
 }
 
+var (
+	md_MsgValidateTicket         protoreflect.MessageDescriptor
+	fd_MsgValidateTicket_creator protoreflect.FieldDescriptor
+	fd_MsgValidateTicket_index   protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_tickfyblockchain_ticket_tx_proto_init()
+	md_MsgValidateTicket = File_tickfyblockchain_ticket_tx_proto.Messages().ByName("MsgValidateTicket")
+	fd_MsgValidateTicket_creator = md_MsgValidateTicket.Fields().ByName("creator")
+	fd_MsgValidateTicket_index = md_MsgValidateTicket.Fields().ByName("index")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgValidateTicket)(nil)
+
+type fastReflection_MsgValidateTicket MsgValidateTicket
+
+func (x *MsgValidateTicket) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgValidateTicket)(x)
+}
+
+func (x *MsgValidateTicket) slowProtoReflect() protoreflect.Message {
+	mi := &file_tickfyblockchain_ticket_tx_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgValidateTicket_messageType fastReflection_MsgValidateTicket_messageType
+var _ protoreflect.MessageType = fastReflection_MsgValidateTicket_messageType{}
+
+type fastReflection_MsgValidateTicket_messageType struct{}
+
+func (x fastReflection_MsgValidateTicket_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgValidateTicket)(nil)
+}
+func (x fastReflection_MsgValidateTicket_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgValidateTicket)
+}
+func (x fastReflection_MsgValidateTicket_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgValidateTicket
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgValidateTicket) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgValidateTicket
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgValidateTicket) Type() protoreflect.MessageType {
+	return _fastReflection_MsgValidateTicket_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgValidateTicket) New() protoreflect.Message {
+	return new(fastReflection_MsgValidateTicket)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgValidateTicket) Interface() protoreflect.ProtoMessage {
+	return (*MsgValidateTicket)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgValidateTicket) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Creator != "" {
+		value := protoreflect.ValueOfString(x.Creator)
+		if !f(fd_MsgValidateTicket_creator, value) {
+			return
+		}
+	}
+	if x.Index != "" {
+		value := protoreflect.ValueOfString(x.Index)
+		if !f(fd_MsgValidateTicket_index, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgValidateTicket) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "tickfyblockchain.ticket.MsgValidateTicket.creator":
+		return x.Creator != ""
+	case "tickfyblockchain.ticket.MsgValidateTicket.index":
+		return x.Index != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicket"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicket does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgValidateTicket) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "tickfyblockchain.ticket.MsgValidateTicket.creator":
+		x.Creator = ""
+	case "tickfyblockchain.ticket.MsgValidateTicket.index":
+		x.Index = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicket"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicket does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgValidateTicket) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "tickfyblockchain.ticket.MsgValidateTicket.creator":
+		value := x.Creator
+		return protoreflect.ValueOfString(value)
+	case "tickfyblockchain.ticket.MsgValidateTicket.index":
+		value := x.Index
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicket"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicket does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgValidateTicket) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "tickfyblockchain.ticket.MsgValidateTicket.creator":
+		x.Creator = value.Interface().(string)
+	case "tickfyblockchain.ticket.MsgValidateTicket.index":
+		x.Index = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicket"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicket does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgValidateTicket) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "tickfyblockchain.ticket.MsgValidateTicket.creator":
+		panic(fmt.Errorf("field creator of message tickfyblockchain.ticket.MsgValidateTicket is not mutable"))
+	case "tickfyblockchain.ticket.MsgValidateTicket.index":
+		panic(fmt.Errorf("field index of message tickfyblockchain.ticket.MsgValidateTicket is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicket"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicket does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgValidateTicket) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "tickfyblockchain.ticket.MsgValidateTicket.creator":
+		return protoreflect.ValueOfString("")
+	case "tickfyblockchain.ticket.MsgValidateTicket.index":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicket"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicket does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgValidateTicket) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in tickfyblockchain.ticket.MsgValidateTicket", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgValidateTicket) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgValidateTicket) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgValidateTicket) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgValidateTicket) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgValidateTicket)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Creator)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Index)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgValidateTicket)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Index) > 0 {
+			i -= len(x.Index)
+			copy(dAtA[i:], x.Index)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Index)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Creator) > 0 {
+			i -= len(x.Creator)
+			copy(dAtA[i:], x.Creator)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgValidateTicket)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgValidateTicket: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgValidateTicket: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Creator = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Index = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgValidateTicketResponse protoreflect.MessageDescriptor
+)
+
+func init() {
+	file_tickfyblockchain_ticket_tx_proto_init()
+	md_MsgValidateTicketResponse = File_tickfyblockchain_ticket_tx_proto.Messages().ByName("MsgValidateTicketResponse")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgValidateTicketResponse)(nil)
+
+type fastReflection_MsgValidateTicketResponse MsgValidateTicketResponse
+
+func (x *MsgValidateTicketResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgValidateTicketResponse)(x)
+}
+
+func (x *MsgValidateTicketResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_tickfyblockchain_ticket_tx_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgValidateTicketResponse_messageType fastReflection_MsgValidateTicketResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgValidateTicketResponse_messageType{}
+
+type fastReflection_MsgValidateTicketResponse_messageType struct{}
+
+func (x fastReflection_MsgValidateTicketResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgValidateTicketResponse)(nil)
+}
+func (x fastReflection_MsgValidateTicketResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgValidateTicketResponse)
+}
+func (x fastReflection_MsgValidateTicketResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgValidateTicketResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgValidateTicketResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgValidateTicketResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgValidateTicketResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgValidateTicketResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgValidateTicketResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgValidateTicketResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgValidateTicketResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgValidateTicketResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgValidateTicketResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgValidateTicketResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicketResponse"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicketResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgValidateTicketResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicketResponse"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicketResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgValidateTicketResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicketResponse"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicketResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgValidateTicketResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicketResponse"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicketResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgValidateTicketResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicketResponse"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicketResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgValidateTicketResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: tickfyblockchain.ticket.MsgValidateTicketResponse"))
+		}
+		panic(fmt.Errorf("message tickfyblockchain.ticket.MsgValidateTicketResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgValidateTicketResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in tickfyblockchain.ticket.MsgValidateTicketResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgValidateTicketResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgValidateTicketResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgValidateTicketResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgValidateTicketResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgValidateTicketResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgValidateTicketResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgValidateTicketResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgValidateTicketResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgValidateTicketResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // versions:
 // 	protoc-gen-go v1.27.0
@@ -4359,6 +5198,75 @@ func (*MsgTransferTicketResponse) Descriptor() ([]byte, []int) {
 	return file_tickfyblockchain_ticket_tx_proto_rawDescGZIP(), []int{7}
 }
 
+type MsgValidateTicket struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Index   string `protobuf:"bytes,2,opt,name=index,proto3" json:"index,omitempty"`
+}
+
+func (x *MsgValidateTicket) Reset() {
+	*x = MsgValidateTicket{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tickfyblockchain_ticket_tx_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgValidateTicket) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgValidateTicket) ProtoMessage() {}
+
+// Deprecated: Use MsgValidateTicket.ProtoReflect.Descriptor instead.
+func (*MsgValidateTicket) Descriptor() ([]byte, []int) {
+	return file_tickfyblockchain_ticket_tx_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *MsgValidateTicket) GetCreator() string {
+	if x != nil {
+		return x.Creator
+	}
+	return ""
+}
+
+func (x *MsgValidateTicket) GetIndex() string {
+	if x != nil {
+		return x.Index
+	}
+	return ""
+}
+
+type MsgValidateTicketResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MsgValidateTicketResponse) Reset() {
+	*x = MsgValidateTicketResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tickfyblockchain_ticket_tx_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgValidateTicketResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgValidateTicketResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgValidateTicketResponse.ProtoReflect.Descriptor instead.
+func (*MsgValidateTicketResponse) Descriptor() ([]byte, []int) {
+	return file_tickfyblockchain_ticket_tx_proto_rawDescGZIP(), []int{9}
+}
+
 var File_tickfyblockchain_ticket_tx_proto protoreflect.FileDescriptor
 
 var file_tickfyblockchain_ticket_tx_proto_rawDesc = []byte{
@@ -4425,7 +5333,14 @@ var file_tickfyblockchain_ticket_tx_proto_rawDesc = []byte{
 	0x63, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x3a,
 	0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1b, 0x0a,
 	0x19, 0x4d, 0x73, 0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x66, 0x65, 0x72, 0x54, 0x69, 0x63, 0x6b,
-	0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xc2, 0x03, 0x0a, 0x03, 0x4d,
+	0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x51, 0x0a, 0x11, 0x4d, 0x73,
+	0x67, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x12,
+	0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x6e, 0x64,
+	0x65, 0x78, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x3a,
+	0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1b, 0x0a,
+	0x19, 0x4d, 0x73, 0x67, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x54, 0x69, 0x63, 0x6b,
+	0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xb4, 0x04, 0x0a, 0x03, 0x4d,
 	0x73, 0x67, 0x12, 0x6a, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61,
 	0x6d, 0x73, 0x12, 0x28, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b,
 	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x2e, 0x4d, 0x73, 0x67,
@@ -4453,21 +5368,28 @@ var file_tickfyblockchain_ticket_tx_proto_rawDesc = []byte{
 	0x63, 0x6b, 0x65, 0x74, 0x1a, 0x32, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f,
 	0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x2e, 0x4d,
 	0x73, 0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x66, 0x65, 0x72, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42,
-	0xd2, 0x01, 0x0a, 0x1b, 0x63, 0x6f, 0x6d, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c,
-	0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x42,
-	0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x2d, 0x74, 0x69, 0x63, 0x6b,
-	0x66, 0x79, 0x2d, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70,
-	0x69, 0x2f, 0x74, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61,
-	0x69, 0x6e, 0x2f, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0xa2, 0x02, 0x03, 0x54, 0x54, 0x58, 0xaa,
-	0x02, 0x17, 0x54, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61,
-	0x69, 0x6e, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0xca, 0x02, 0x17, 0x54, 0x69, 0x63, 0x6b,
-	0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x54, 0x69, 0x63,
-	0x6b, 0x65, 0x74, 0xe2, 0x02, 0x23, 0x54, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63,
-	0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x5c, 0x47, 0x50,
-	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x18, 0x54, 0x69, 0x63, 0x6b,
-	0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a, 0x54, 0x69,
-	0x63, 0x6b, 0x65, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x70, 0x0a, 0x0e, 0x56, 0x61, 0x6c, 0x69,
+	0x64, 0x61, 0x74, 0x65, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x12, 0x2a, 0x2e, 0x74, 0x69, 0x63,
+	0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x74, 0x69,
+	0x63, 0x6b, 0x65, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65,
+	0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x1a, 0x32, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62,
+	0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74,
+	0x2e, 0x4d, 0x73, 0x67, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x54, 0x69, 0x63, 0x6b,
+	0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a,
+	0x01, 0x42, 0xd2, 0x01, 0x0a, 0x1b, 0x63, 0x6f, 0x6d, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x66, 0x79,
+	0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x74, 0x69, 0x63, 0x6b, 0x65,
+	0x74, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x2d, 0x74, 0x69,
+	0x63, 0x6b, 0x66, 0x79, 0x2d, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f,
+	0x61, 0x70, 0x69, 0x2f, 0x74, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0xa2, 0x02, 0x03, 0x54, 0x54,
+	0x58, 0xaa, 0x02, 0x17, 0x54, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0xca, 0x02, 0x17, 0x54, 0x69,
+	0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x54,
+	0x69, 0x63, 0x6b, 0x65, 0x74, 0xe2, 0x02, 0x23, 0x54, 0x69, 0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c,
+	0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x5c,
+	0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x18, 0x54, 0x69,
+	0x63, 0x6b, 0x66, 0x79, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a,
+	0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4482,7 +5404,7 @@ func file_tickfyblockchain_ticket_tx_proto_rawDescGZIP() []byte {
 	return file_tickfyblockchain_ticket_tx_proto_rawDescData
 }
 
-var file_tickfyblockchain_ticket_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_tickfyblockchain_ticket_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_tickfyblockchain_ticket_tx_proto_goTypes = []interface{}{
 	(*MsgUpdateParams)(nil),           // 0: tickfyblockchain.ticket.MsgUpdateParams
 	(*MsgUpdateParamsResponse)(nil),   // 1: tickfyblockchain.ticket.MsgUpdateParamsResponse
@@ -4492,23 +5414,27 @@ var file_tickfyblockchain_ticket_tx_proto_goTypes = []interface{}{
 	(*MsgUpdateTicketResponse)(nil),   // 5: tickfyblockchain.ticket.MsgUpdateTicketResponse
 	(*MsgTransferTicket)(nil),         // 6: tickfyblockchain.ticket.MsgTransferTicket
 	(*MsgTransferTicketResponse)(nil), // 7: tickfyblockchain.ticket.MsgTransferTicketResponse
-	(*Params)(nil),                    // 8: tickfyblockchain.ticket.Params
+	(*MsgValidateTicket)(nil),         // 8: tickfyblockchain.ticket.MsgValidateTicket
+	(*MsgValidateTicketResponse)(nil), // 9: tickfyblockchain.ticket.MsgValidateTicketResponse
+	(*Params)(nil),                    // 10: tickfyblockchain.ticket.Params
 }
 var file_tickfyblockchain_ticket_tx_proto_depIdxs = []int32{
-	8, // 0: tickfyblockchain.ticket.MsgUpdateParams.params:type_name -> tickfyblockchain.ticket.Params
-	0, // 1: tickfyblockchain.ticket.Msg.UpdateParams:input_type -> tickfyblockchain.ticket.MsgUpdateParams
-	2, // 2: tickfyblockchain.ticket.Msg.CreateTicket:input_type -> tickfyblockchain.ticket.MsgCreateTicket
-	4, // 3: tickfyblockchain.ticket.Msg.UpdateTicket:input_type -> tickfyblockchain.ticket.MsgUpdateTicket
-	6, // 4: tickfyblockchain.ticket.Msg.TransferTicket:input_type -> tickfyblockchain.ticket.MsgTransferTicket
-	1, // 5: tickfyblockchain.ticket.Msg.UpdateParams:output_type -> tickfyblockchain.ticket.MsgUpdateParamsResponse
-	3, // 6: tickfyblockchain.ticket.Msg.CreateTicket:output_type -> tickfyblockchain.ticket.MsgCreateTicketResponse
-	5, // 7: tickfyblockchain.ticket.Msg.UpdateTicket:output_type -> tickfyblockchain.ticket.MsgUpdateTicketResponse
-	7, // 8: tickfyblockchain.ticket.Msg.TransferTicket:output_type -> tickfyblockchain.ticket.MsgTransferTicketResponse
-	5, // [5:9] is the sub-list for method output_type
-	1, // [1:5] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	10, // 0: tickfyblockchain.ticket.MsgUpdateParams.params:type_name -> tickfyblockchain.ticket.Params
+	0,  // 1: tickfyblockchain.ticket.Msg.UpdateParams:input_type -> tickfyblockchain.ticket.MsgUpdateParams
+	2,  // 2: tickfyblockchain.ticket.Msg.CreateTicket:input_type -> tickfyblockchain.ticket.MsgCreateTicket
+	4,  // 3: tickfyblockchain.ticket.Msg.UpdateTicket:input_type -> tickfyblockchain.ticket.MsgUpdateTicket
+	6,  // 4: tickfyblockchain.ticket.Msg.TransferTicket:input_type -> tickfyblockchain.ticket.MsgTransferTicket
+	8,  // 5: tickfyblockchain.ticket.Msg.ValidateTicket:input_type -> tickfyblockchain.ticket.MsgValidateTicket
+	1,  // 6: tickfyblockchain.ticket.Msg.UpdateParams:output_type -> tickfyblockchain.ticket.MsgUpdateParamsResponse
+	3,  // 7: tickfyblockchain.ticket.Msg.CreateTicket:output_type -> tickfyblockchain.ticket.MsgCreateTicketResponse
+	5,  // 8: tickfyblockchain.ticket.Msg.UpdateTicket:output_type -> tickfyblockchain.ticket.MsgUpdateTicketResponse
+	7,  // 9: tickfyblockchain.ticket.Msg.TransferTicket:output_type -> tickfyblockchain.ticket.MsgTransferTicketResponse
+	9,  // 10: tickfyblockchain.ticket.Msg.ValidateTicket:output_type -> tickfyblockchain.ticket.MsgValidateTicketResponse
+	6,  // [6:11] is the sub-list for method output_type
+	1,  // [1:6] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_tickfyblockchain_ticket_tx_proto_init() }
@@ -4614,6 +5540,30 @@ func file_tickfyblockchain_ticket_tx_proto_init() {
 				return nil
 			}
 		}
+		file_tickfyblockchain_ticket_tx_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgValidateTicket); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tickfyblockchain_ticket_tx_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgValidateTicketResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -4621,7 +5571,7 @@ func file_tickfyblockchain_ticket_tx_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_tickfyblockchain_ticket_tx_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
