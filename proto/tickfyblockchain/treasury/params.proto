@@ -1,0 +1,15 @@
+syntax = "proto3";
+package tickfyblockchain.treasury;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "tickfy-blockchain/x/treasury/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "tickfyblockchain/x/treasury/Params";
+  option (gogoproto.equal) = true;
+
+  
+}

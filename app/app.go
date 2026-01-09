@@ -78,6 +78,7 @@ import (
 	eventmodulekeeper "tickfy-blockchain/x/event/keeper"
 	ticketmodulekeeper "tickfy-blockchain/x/ticket/keeper"
 
+	treasurymodulekeeper "tickfy-blockchain/x/treasury/keeper"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"tickfy-blockchain/docs"
@@ -143,8 +144,9 @@ type App struct {
 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 	ScopedKeepers             map[string]capabilitykeeper.ScopedKeeper
 
-	EventKeeper  eventmodulekeeper.Keeper
-	TicketKeeper ticketmodulekeeper.Keeper
+	EventKeeper    eventmodulekeeper.Keeper
+	TicketKeeper   ticketmodulekeeper.Keeper
+	TreasuryKeeper treasurymodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -250,6 +252,7 @@ func New(
 		&app.CircuitBreakerKeeper,
 		&app.EventKeeper,
 		&app.TicketKeeper,
+		&app.TreasuryKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)

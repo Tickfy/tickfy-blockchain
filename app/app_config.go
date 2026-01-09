@@ -11,6 +11,10 @@ import (
 	_ "tickfy-blockchain/x/ticket/module" // import for side-effects
 	ticketmoduletypes "tickfy-blockchain/x/ticket/types"
 
+	treasurymodulev1 "tickfy-blockchain/api/tickfyblockchain/treasury/module"
+	_ "tickfy-blockchain/x/treasury/module" // import for side-effects
+	treasurymoduletypes "tickfy-blockchain/x/treasury/types"
+
 	runtimev1alpha1 "cosmossdk.io/api/cosmos/app/runtime/v1alpha1"
 	appv1alpha1 "cosmossdk.io/api/cosmos/app/v1alpha1"
 	authmodulev1 "cosmossdk.io/api/cosmos/auth/module/v1"
@@ -99,6 +103,7 @@ var (
 		// chain modules
 		eventmoduletypes.ModuleName,
 		ticketmoduletypes.ModuleName,
+		treasurymoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -125,6 +130,7 @@ var (
 		// chain modules
 		eventmoduletypes.ModuleName,
 		ticketmoduletypes.ModuleName,
+		treasurymoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -145,6 +151,7 @@ var (
 		// chain modules
 		eventmoduletypes.ModuleName,
 		ticketmoduletypes.ModuleName,
+		treasurymoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -167,6 +174,7 @@ var (
 		{Account: icatypes.ModuleName},
 		{Account: eventmoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
 		{Account: ticketmoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
+		{Account: treasurymoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
 		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 
@@ -309,6 +317,10 @@ var (
 			{
 				Name:   ticketmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&ticketmodulev1.Module{}),
+			},
+			{
+				Name:   treasurymoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&treasurymodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
