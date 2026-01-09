@@ -3,14 +3,14 @@ validation: sovereign
 accounts: 
 - name: alice
   coins:
-  # 10,000,000 TKFY for staking/governance
-  - 10000000000000utkfy
+  # 10,000,000 TKFY (stake) for staking/governance
+  - 10000000000000stake
   # 1,000,000 TKFYT for transactions
   - 1000000000000utkfyt
 - name: bob
   coins:
-  # 5,000,000 TKFY for staking/governance
-  - 5000000000000utkfy
+  # 5,000,000 TKFY (stake) for staking/governance
+  - 5000000000000stake
   # 500,000 TKFYT for transactions
   - 500000000000utkfyt
 client:
@@ -21,9 +21,9 @@ faucet:
   coins:
   # Faucet gives 100 TKFYT for testing
   - 100000000utkfyt
-  # Faucet gives 10 TKFY for testing
-  - 10000000utkfy
+  # Faucet gives 10 TKFY (stake) for testing
+  - 10000000stake
 validators:
 - name: alice
   # Validator stakes 5,000 TKFY (minimum requirement)
-  bonded: 5000000000utkfy
+  bonded: 5000000000stake

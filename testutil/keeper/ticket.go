@@ -40,7 +40,6 @@ func TicketKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 		authority.String(),
 		nil,
 		nil,
-		nil,
 	)
 
 	ctx := sdk.NewContext(stateStore, cmtproto.Header{}, false, log.NewNopLogger())

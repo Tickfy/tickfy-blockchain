@@ -15,7 +15,7 @@ type StakingKeeper interface {
 	// Methods imported from account should be defined here
 }
 
-type EventKeeper interface {
+type TicketEventKeeper interface {
 	// TODO Add methods imported from event should be defined here
 }
 
