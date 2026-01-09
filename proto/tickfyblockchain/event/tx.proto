@@ -20,6 +20,7 @@ service Msg {
   rpc CreateEvent    (MsgCreateEvent   ) returns (MsgCreateEventResponse   );
   rpc UpdateEvent    (MsgUpdateEvent   ) returns (MsgUpdateEventResponse   );
   rpc CreateEventDay (MsgCreateEventDay) returns (MsgCreateEventDayResponse);
+  rpc UpdateEventDay (MsgUpdateEventDay) returns (MsgUpdateEventDayResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -80,4 +81,16 @@ message MsgCreateEventDay {
 message MsgCreateEventDayResponse {
   string index = 1;
 }
+
+message MsgUpdateEventDay {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator    = 1;
+  string index      = 2;
+  string eventIndex = 3;
+  string name       = 4;
+  string startTime  = 5;
+  string endTime    = 6;
+}
+
+message MsgUpdateEventDayResponse {}
 

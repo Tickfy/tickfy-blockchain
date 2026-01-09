@@ -24,6 +24,7 @@ const (
 	Msg_CreateEvent_FullMethodName    = "/tickfyblockchain.event.Msg/CreateEvent"
 	Msg_UpdateEvent_FullMethodName    = "/tickfyblockchain.event.Msg/UpdateEvent"
 	Msg_CreateEventDay_FullMethodName = "/tickfyblockchain.event.Msg/CreateEventDay"
+	Msg_UpdateEventDay_FullMethodName = "/tickfyblockchain.event.Msg/UpdateEventDay"
 )
 
 // MsgClient is the client API for Msg service.
@@ -36,6 +37,7 @@ type MsgClient interface {
 	CreateEvent(ctx context.Context, in *MsgCreateEvent, opts ...grpc.CallOption) (*MsgCreateEventResponse, error)
 	UpdateEvent(ctx context.Context, in *MsgUpdateEvent, opts ...grpc.CallOption) (*MsgUpdateEventResponse, error)
 	CreateEventDay(ctx context.Context, in *MsgCreateEventDay, opts ...grpc.CallOption) (*MsgCreateEventDayResponse, error)
+	UpdateEventDay(ctx context.Context, in *MsgUpdateEventDay, opts ...grpc.CallOption) (*MsgUpdateEventDayResponse, error)
 }
 
 type msgClient struct {
@@ -82,6 +84,15 @@ func (c *msgClient) CreateEventDay(ctx context.Context, in *MsgCreateEventDay, o
 	return out, nil
 }
 
+func (c *msgClient) UpdateEventDay(ctx context.Context, in *MsgUpdateEventDay, opts ...grpc.CallOption) (*MsgUpdateEventDayResponse, error) {
+	out := new(MsgUpdateEventDayResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateEventDay_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -92,6 +103,7 @@ type MsgServer interface {
 	CreateEvent(context.Context, *MsgCreateEvent) (*MsgCreateEventResponse, error)
 	UpdateEvent(context.Context, *MsgUpdateEvent) (*MsgUpdateEventResponse, error)
 	CreateEventDay(context.Context, *MsgCreateEventDay) (*MsgCreateEventDayResponse, error)
+	UpdateEventDay(context.Context, *MsgUpdateEventDay) (*MsgUpdateEventDayResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -110,6 +122,9 @@ func (UnimplementedMsgServer) UpdateEvent(context.Context, *MsgUpdateEvent) (*Ms
 }
 func (UnimplementedMsgServer) CreateEventDay(context.Context, *MsgCreateEventDay) (*MsgCreateEventDayResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateEventDay not implemented")
+}
+func (UnimplementedMsgServer) UpdateEventDay(context.Context, *MsgUpdateEventDay) (*MsgUpdateEventDayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateEventDay not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -196,6 +211,24 @@ func _Msg_CreateEventDay_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_UpdateEventDay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateEventDay)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateEventDay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateEventDay_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateEventDay(ctx, req.(*MsgUpdateEventDay))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -218,6 +251,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateEventDay",
 			Handler:    _Msg_CreateEventDay_Handler,
+		},
+		{
+			MethodName: "UpdateEventDay",
+			Handler:    _Msg_UpdateEventDay_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
