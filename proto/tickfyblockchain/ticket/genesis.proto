@@ -1,17 +1,19 @@
 syntax = "proto3";
+
 package tickfyblockchain.ticket;
 
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "tickfyblockchain/ticket/params.proto";
+import "tickfyblockchain/ticket/ticket.proto";
 
 option go_package = "tickfy-blockchain/x/ticket/types";
 
 // GenesisState defines the ticket module's genesis state.
 message GenesisState {
+  
   // params defines all the parameters of the module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+           Params params     = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Ticket ticketList = 2 [(gogoproto.nullable) = false] ;
 }
+

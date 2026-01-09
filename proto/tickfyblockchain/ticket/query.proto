@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package tickfyblockchain.ticket;
 
 import "amino/amino.proto";
@@ -6,25 +7,53 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "tickfyblockchain/ticket/params.proto";
+import "tickfyblockchain/ticket/ticket.proto";
 
 option go_package = "tickfy-blockchain/x/ticket/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/tickfy-blockchain/ticket/params";
+  
+  }
+  
+  // Queries a list of Ticket items.
+  rpc Ticket    (QueryGetTicketRequest) returns (QueryGetTicketResponse) {
+    option (google.api.http).get = "/tickfy-blockchain/ticket/ticket/{index}";
+  
+  }
+  rpc TicketAll (QueryAllTicketRequest) returns (QueryAllTicketResponse) {
+    option (google.api.http).get = "/tickfy-blockchain/ticket/ticket";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
+
+message QueryGetTicketRequest {
+  string index = 1;
+}
+
+message QueryGetTicketResponse {
+  Ticket ticket = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllTicketRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllTicketResponse {
+  repeated Ticket                                 ticket     = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+

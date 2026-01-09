@@ -1,0 +1,20 @@
+syntax = "proto3";
+package tickfyblockchain.ticket;
+
+option go_package = "tickfy-blockchain/x/ticket/types";
+
+message Ticket {
+  string index = 1; 
+  string eventIndex = 2; 
+  string eventDayIndex = 3; 
+  string owner = 4; 
+  uint64 price = 5; 
+  string status = 6; 
+  string metadata = 7; 
+  uint64 transferCount = 8; 
+  string lastTransferTime = 9; 
+  string validatedAt = 10; 
+  string validatedBy = 11; 
+  
+}
+

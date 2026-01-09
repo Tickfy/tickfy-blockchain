@@ -20,7 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName = "/tickfyblockchain.ticket.Query/Params"
+	Query_Params_FullMethodName    = "/tickfyblockchain.ticket.Query/Params"
+	Query_Ticket_FullMethodName    = "/tickfyblockchain.ticket.Query/Ticket"
+	Query_TicketAll_FullMethodName = "/tickfyblockchain.ticket.Query/TicketAll"
 )
 
 // QueryClient is the client API for Query service.
@@ -29,6 +31,9 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a list of Ticket items.
+	Ticket(ctx context.Context, in *QueryGetTicketRequest, opts ...grpc.CallOption) (*QueryGetTicketResponse, error)
+	TicketAll(ctx context.Context, in *QueryAllTicketRequest, opts ...grpc.CallOption) (*QueryAllTicketResponse, error)
 }
 
 type queryClient struct {
@@ -48,12 +53,33 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) Ticket(ctx context.Context, in *QueryGetTicketRequest, opts ...grpc.CallOption) (*QueryGetTicketResponse, error) {
+	out := new(QueryGetTicketResponse)
+	err := c.cc.Invoke(ctx, Query_Ticket_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) TicketAll(ctx context.Context, in *QueryAllTicketRequest, opts ...grpc.CallOption) (*QueryAllTicketResponse, error) {
+	out := new(QueryAllTicketResponse)
+	err := c.cc.Invoke(ctx, Query_TicketAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a list of Ticket items.
+	Ticket(context.Context, *QueryGetTicketRequest) (*QueryGetTicketResponse, error)
+	TicketAll(context.Context, *QueryAllTicketRequest) (*QueryAllTicketResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -63,6 +89,12 @@ type UnimplementedQueryServer struct {
 
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (UnimplementedQueryServer) Ticket(context.Context, *QueryGetTicketRequest) (*QueryGetTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ticket not implemented")
+}
+func (UnimplementedQueryServer) TicketAll(context.Context, *QueryAllTicketRequest) (*QueryAllTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TicketAll not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -95,6 +127,42 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_Ticket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetTicketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Ticket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_Ticket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Ticket(ctx, req.(*QueryGetTicketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_TicketAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllTicketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).TicketAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_TicketAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).TicketAll(ctx, req.(*QueryAllTicketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -105,6 +173,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "Ticket",
+			Handler:    _Query_Ticket_Handler,
+		},
+		{
+			MethodName: "TicketAll",
+			Handler:    _Query_TicketAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
