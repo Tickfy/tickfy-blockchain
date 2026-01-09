@@ -7,6 +7,10 @@ import (
 	_ "tickfy-blockchain/x/event/module" // import for side-effects
 	eventmoduletypes "tickfy-blockchain/x/event/types"
 
+	ticketmodulev1 "tickfy-blockchain/api/tickfyblockchain/ticket/module"
+	_ "tickfy-blockchain/x/ticket/module" // import for side-effects
+	ticketmoduletypes "tickfy-blockchain/x/ticket/types"
+
 	runtimev1alpha1 "cosmossdk.io/api/cosmos/app/runtime/v1alpha1"
 	appv1alpha1 "cosmossdk.io/api/cosmos/app/v1alpha1"
 	authmodulev1 "cosmossdk.io/api/cosmos/auth/module/v1"
@@ -94,6 +98,7 @@ var (
 		circuittypes.ModuleName,
 		// chain modules
 		eventmoduletypes.ModuleName,
+		ticketmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -119,6 +124,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		eventmoduletypes.ModuleName,
+		ticketmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -138,6 +144,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		eventmoduletypes.ModuleName,
+		ticketmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -159,6 +166,7 @@ var (
 		{Account: ibcfeetypes.ModuleName},
 		{Account: icatypes.ModuleName},
 		{Account: eventmoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
+		{Account: ticketmoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
 		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 
@@ -297,6 +305,10 @@ var (
 			{
 				Name:   eventmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&eventmodulev1.Module{}),
+			},
+			{
+				Name:   ticketmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&ticketmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
