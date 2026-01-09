@@ -63,6 +63,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 			Short: "Send a validateTicket tx",
 			PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"},},
 		},
+		{
+			RpcMethod: "ValidateTicket",
+			Use: "validate-ticket [index]",
+			Short: "Send a validateTicket tx",
+			PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"},},
+		},
 		// this line is used by ignite scaffolding # autocli/tx
 			},
 		},
