@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"time"
+
 	cmtcfg "github.com/cometbft/cometbft/config"
 	serverconfig "github.com/cosmos/cosmos-sdk/server/config"
 )
@@ -9,6 +11,15 @@ import (
 // return cmtcfg.DefaultConfig if no custom configuration is required for the application.
 func initCometBFTConfig() *cmtcfg.Config {
 	cfg := cmtcfg.DefaultConfig()
+
+	// Configure block time for ~10 seconds
+	cfg.Consensus.TimeoutPropose = 3 * time.Second
+	cfg.Consensus.TimeoutProposeDelta = 500 * time.Millisecond
+	cfg.Consensus.TimeoutPrevote = 1 * time.Second
+	cfg.Consensus.TimeoutPrevoteDelta = 500 * time.Millisecond
+	cfg.Consensus.TimeoutPrecommit = 1 * time.Second
+	cfg.Consensus.TimeoutPrecommitDelta = 500 * time.Millisecond
+	cfg.Consensus.TimeoutCommit = 5 * time.Second
 
 	// these values put a higher strain on node memory
 	// cfg.P2P.MaxNumInboundPeers = 100

@@ -25,5 +25,24 @@ faucet:
   - 10000000stake
 validators:
 - name: alice
-  # Validator stakes 5,000 TKFY (minimum requirement)
-  bonded: 5000000000stake
+  # Validator stakes 200,000 TKFY (minimum requirement)
+  bonded: 200000000000stake
+  config:
+    consensus:
+      timeout_propose: 3s
+      timeout_propose_delta: 500ms
+      timeout_prevote: 1s
+      timeout_prevote_delta: 500ms
+      timeout_precommit: 1s
+      timeout_precommit_delta: 500ms
+      timeout_commit: 5s
+genesis:
+  app_state:
+    staking:
+      params:
+        max_validators: 250
+        bond_denom: stake
+        unbonding_time: "1814400s"
+        max_entries: 7
+        historical_entries: 10000
+        min_commission_rate: "0.050000000000000000"
